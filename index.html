@@ -12,56 +12,67 @@
         }
         
         body {
-            font-family: Arial, sans-serif;
-            background: #1a1a2e;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
-            padding: 10px;
-            max-width: 100%;
-            overflow-x: hidden;
+            padding: 12px;
+            min-height: 100vh;
         }
         
         .header {
             text-align: center;
-            padding: 15px 0;
+            padding: 15px 10px;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #16213e, #0f3460);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(15, 52, 96, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .header h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
+            font-weight: 600;
         }
         
         .header p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.8;
         }
         
         .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .row {
+            display: flex;
+            gap: 12px;
             width: 100%;
         }
         
         .frame-container {
-            background: #16213e;
-            border-radius: 8px;
+            flex: 1;
+            background: rgba(22, 33, 62, 0.9);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            aspect-ratio: 1/1.5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             display: flex;
             flex-direction: column;
+            min-height: 180px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .frame-header {
-            background: #0f3460;
-            padding: 8px;
-            font-size: 0.7rem;
+            background: rgba(15, 52, 96, 0.9);
+            padding: 10px;
+            font-size: 0.8rem;
             text-align: center;
-            border-bottom: 1px solid #1a1a2e;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
         }
         
         .frame-wrapper {
@@ -83,58 +94,95 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #16213e;
+            background: rgba(22, 33, 62, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             color: #aaa;
+            z-index: 10;
         }
         
         .controls {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             margin-top: 20px;
             padding: 10px;
         }
         
         button {
-            background: #0f3460;
+            background: linear-gradient(to right, #0f3460, #1a5a9e);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
             font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            max-width: 160px;
         }
         
         button:hover {
-            background: #1a5a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
         }
         
         .footer {
             text-align: center;
             margin-top: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             opacity: 0.7;
             padding: 10px;
         }
         
+        /* Status indicator */
+        .status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
         /* Adjustments for very small screens */
-        @media (max-width: 360px) {
-            .container {
-                gap: 5px;
+        @media (max-width: 380px) {
+            .row {
+                gap: 8px;
             }
             
-            .frame-header {
-                padding: 6px;
-                font-size: 0.65rem;
+            .container {
+                gap: 8px;
+            }
+            
+            .frame-container {
+                min-height: 160px;
             }
             
             button {
-                padding: 8px 12px;
+                padding: 10px 15px;
                 font-size: 0.85rem;
             }
         }
@@ -142,8 +190,12 @@
 </head>
 <body>
     <div class="header">
-        <h1>Melbet Registration Multi-View</h1>
-        <p>9 instances displayed in a 3x3 grid</p>
+        <h1>Melbet Registration Viewer</h1>
+        <p>10 instances displayed in 2 columns and 5 rows</p>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>All frames loading...</span>
+        </div>
     </div>
     
     <div class="container" id="frames-container">
@@ -152,7 +204,7 @@
     
     <div class="controls">
         <button id="refresh-all">Refresh All</button>
-        <button id="open-individual">Open Individual Pages</button>
+        <button id="open-individual">Open Pages</button>
     </div>
     
     <div class="footer">
@@ -164,40 +216,49 @@
             const framesContainer = document.getElementById('frames-container');
             const url = 'https://melbet-com.mobi/en/registration';
             
-            // Create 9 iframes in a 3x3 grid
-            for (let i = 1; i <= 9; i++) {
-                const frameContainer = document.createElement('div');
-                frameContainer.className = 'frame-container';
+            // Create 10 iframes in 5 rows with 2 columns
+            for (let row = 1; row <= 5; row++) {
+                const rowElement = document.createElement('div');
+                rowElement.className = 'row';
                 
-                const frameHeader = document.createElement('div');
-                frameHeader.className = 'frame-header';
-                frameHeader.textContent = `Melbet #${i}`;
+                for (let col = 1; col <= 2; col++) {
+                    const frameNumber = (row - 1) * 2 + col;
+                    
+                    const frameContainer = document.createElement('div');
+                    frameContainer.className = 'frame-container';
+                    
+                    const frameHeader = document.createElement('div');
+                    frameHeader.className = 'frame-header';
+                    frameHeader.textContent = `Melbet #${frameNumber}`;
+                    
+                    const frameWrapper = document.createElement('div');
+                    frameWrapper.className = 'frame-wrapper';
+                    
+                    const loading = document.createElement('div');
+                    loading.className = 'loading';
+                    loading.textContent = 'Loading...';
+                    loading.id = `loading-${frameNumber}`;
+                    
+                    const iframe = document.createElement('iframe');
+                    iframe.src = url;
+                    iframe.id = `frame-${frameNumber}`;
+                    iframe.onload = function() {
+                        document.getElementById(`loading-${frameNumber}`).style.display = 'none';
+                    };
+                    
+                    frameWrapper.appendChild(loading);
+                    frameWrapper.appendChild(iframe);
+                    frameContainer.appendChild(frameHeader);
+                    frameContainer.appendChild(frameWrapper);
+                    rowElement.appendChild(frameContainer);
+                }
                 
-                const frameWrapper = document.createElement('div');
-                frameWrapper.className = 'frame-wrapper';
-                
-                const loading = document.createElement('div');
-                loading.className = 'loading';
-                loading.textContent = 'Loading...';
-                loading.id = `loading-${i}`;
-                
-                const iframe = document.createElement('iframe');
-                iframe.src = url;
-                iframe.id = `frame-${i}`;
-                iframe.onload = function() {
-                    document.getElementById(`loading-${i}`).style.display = 'none';
-                };
-                
-                frameWrapper.appendChild(loading);
-                frameWrapper.appendChild(iframe);
-                frameContainer.appendChild(frameHeader);
-                frameContainer.appendChild(frameWrapper);
-                framesContainer.appendChild(frameContainer);
+                framesContainer.appendChild(rowElement);
             }
             
             // Refresh all frames
             document.getElementById('refresh-all').addEventListener('click', function() {
-                for (let i = 1; i <= 9; i++) {
+                for (let i = 1; i <= 10; i++) {
                     const frame = document.getElementById(`frame-${i}`);
                     const loading = document.getElementById(`loading-${i}`);
                     loading.style.display = 'flex';
@@ -207,7 +268,7 @@
             
             // Open individual pages
             document.getElementById('open-individual').addEventListener('click', function() {
-                for (let i = 1; i <= 9; i++) {
+                for (let i = 1; i <= 10; i++) {
                     window.open(url, `melbet-${i}`);
                 }
             });
